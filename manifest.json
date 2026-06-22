@@ -2,7 +2,7 @@
   "id": "hyrox-performance",
   "display_name": "HYROX Performance Pack",
   "neutral_display_name": "Fitness Racing Performance Pack",
-  "brand_authorized": false,
+  "brand_authorized": true,
   "purpose": "A complete, standalone coaching system for the fixed 8-run / 8-station fitness race format: athlete assessment, deterministic goal-time modeling, periodized training plans, running and compromised-running development, station technique and conditioning, race pacing and roxzone transitions, simulations, race-week taper, division and partner strategy, and post-race analysis. Domain-general coaching concepts are specialized for this race format, not factored out as generic fitness advice.",
   "intended_users": [
     "First-time and recreational athletes preparing for their first race",
@@ -49,5 +49,5 @@
   ],
   "safety_behavior": "Every coaching skill applies the shared safety-and-referral framework proportionately: it does not diagnose, provide medical or physiotherapy rehab, override clinician instructions, prescribe medication, treat eating disorders, promise injury prevention, or guarantee race outcomes. It flags professional evaluation for red-flag symptoms (chest pain, syncope, severe shortness of breath, neurological symptoms, suspected fracture, major trauma, acute joint instability, rapidly increasing swelling, severe or unexplained pain, rhabdomyolysis or heat-illness warning signs, disordered-eating indicators, pregnancy/postpartum complications, and symptoms worsening or not responding as expected).",
   "rule_version_status": "Division weights, standards, and seasonal rules are never hardcoded. The rules-dependent skills (hyrox-division-and-rules-advisor, hyrox-doubles-strategy-builder, hyrox-relay-strategy-builder) require a season or event date, use only the matching version from references/source-version-registry.json, warn when a rule may be stale, request current rule text when it is missing, and distinguish official rule vs interpretation vs common practice vs unverified assumption. The registry ships empty of proprietary rulebooks by default.",
-  "notes": "This independent skill repository is not official, endorsed, sponsored, approved, or certified by HYROX World GmbH or its affiliates. \"HYROX\" is a trademark of HYROX World GmbH; references here are nominative only. Absent documented brand authorization, the neutral display name \"Fitness Racing Performance Pack\" is used."
+  "notes": "Produced by a HYROX-affiliated gym and trainer; the HYROX mark is used under the operator's HYROX affiliate license (verifiable on request). \"HYROX\" is a trademark of HYROX World GmbH. This pack is independently produced and is not separately reviewed, certified, or endorsed by HYROX World GmbH — an affiliate license to use the mark is not an endorsement of this software. See DISCLAIMER.md and assets/brand/brand-authorization.json."
 }

@@ -1,17 +1,19 @@
 # Disclaimer
 
-## Non-affiliation
+## Affiliate license & trademark
 
-This independent skill repository is not official, endorsed, sponsored,
-approved, or certified by HYROX World GmbH or its affiliates.
+This pack is produced by a **HYROX-affiliated gym and trainer**. The HYROX mark
+is used under the operator's **HYROX affiliate license** (see
+`assets/brand/brand-authorization.json`, where `authorized` is `true`). The
+operator asserts this affiliate authorization and can verify it on request.
 
-"HYROX" is a trademark of HYROX World GmbH. All references to HYROX in this
-repository are **nominative** — they describe the race format and the sport for
-the purpose of coaching. No affiliation, partnership, certification, or
-endorsement is claimed or implied. Absent documented brand authorization (see
-`assets/brand/brand-authorization.json`, where `authorized` is `false`), the
-pack is published under the neutral display name **"Fitness Racing Performance
-Pack"**.
+"HYROX" is a trademark of HYROX World GmbH. This pack is **independently
+produced** by the affiliate operator and is **not separately reviewed,
+certified, or endorsed by HYROX World GmbH** — an affiliate license to use the
+mark is not an endorsement of this software. References to HYROX describe the
+race format for coaching purposes. If the affiliate license lapses or is not
+verified, the pack reverts to the neutral display name **"Fitness Racing
+Performance Pack"** (set `authorized` back to `false` and re-run `npm run build`).
 
 ## Not medical or professional advice
 

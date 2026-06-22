@@ -32,7 +32,9 @@ import { ROOT, loadAllSkills, GREEN } from './_lib.ts';
 
 const REPO_URL = 'https://github.com/aouellets/hyrox-claude-skills';
 const CATALOG_CATEGORY = 'personal'; // DB enum bucket for fitness content
-const NEUTRAL_AUTHOR = 'hyrox-claude-skills';
+// Catalog author string. Also the key the Skill Me partner-logo registry
+// (lib/partners.ts) matches on to render the licensed HYROX wordmark.
+const NEUTRAL_AUTHOR = 'HYROX Performance';
 
 function sqlStr(value: string): string {
   return `'${value.replace(/'/g, "''")}'`;
