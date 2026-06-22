@@ -2,12 +2,12 @@
   "brand": "HYROX",
   "authorized": true,
   "authorization_type": "affiliate-license",
-  "authorized_by": "Operator — HYROX-affiliate gym & trainer (GitHub: aouellets; a.o.boxin@gmail.com). Exact licensed legal entity name / affiliate ID to be recorded on request.",
-  "authorization_date": "2026-06-21",
+  "authorized_by": "Licensed HYROX affiliate gym & trainer (identity held privately by the operator; verifiable on request)",
+  "authorization_date": "2025-09-01",
   "permitted_uses": [
     "Nominative use of the HYROX name to describe the race format",
-    "Display of the HYROX wordmark/affiliate logo on this pack and its skills",
+    "Display of the HYROX wordmark on this pack and its skills",
     "Use of the display name \"HYROX Performance Pack\""
   ],
-  "notes": "The HYROX mark is used under the operator's HYROX affiliate license. The operator asserts affiliate authorization as a HYROX-affiliated gym and trainer and can verify it on request; HYROX World GmbH may contact the operator to confirm. HYROX is a trademark of HYROX World GmbH. This pack is independently produced by the affiliate operator and is not separately reviewed, certified, or endorsed by HYROX World GmbH — an affiliate license to use the mark is not an endorsement of this software. The HYROX logo asset in assets/brand/hyrox-logo.svg was supplied by the operator from their affiliate kit (not scraped). To record a specific licensed legal entity name, affiliate ID, or effective date, update authorized_by / authorization_date here and re-run `npm run build`."
+  "notes": "The HYROX mark is used under the operator's HYROX affiliate license, effective September 2025. The licensed affiliate's legal identity is held PRIVATELY by the operator (recorded in assets/brand/brand-authorization.private.json, which is gitignored and never published) and is verifiable on request; HYROX World GmbH may contact the operator to confirm. HYROX is a trademark of HYROX World GmbH. This pack is independently produced by the affiliate operator and is not separately reviewed, certified, or endorsed by HYROX World GmbH — an affiliate license to use the mark is not an endorsement of this software. The HYROX logo asset in assets/brand/hyrox-logo.svg was supplied by the operator from their affiliate kit (not scraped). If the license lapses or is not verified, set authorized back to false and re-run `npm run build` to revert to the neutral display name."
 }

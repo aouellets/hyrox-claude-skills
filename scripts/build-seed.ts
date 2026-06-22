@@ -31,10 +31,13 @@ import { join } from 'node:path';
 import { ROOT, loadAllSkills, GREEN } from './_lib.ts';
 
 const REPO_URL = 'https://github.com/aouellets/hyrox-claude-skills';
-const CATALOG_CATEGORY = 'personal'; // DB enum bucket for fitness content
-// Catalog author string. Also the key the Skill Me partner-logo registry
-// (lib/partners.ts) matches on to render the licensed HYROX wordmark.
-const NEUTRAL_AUTHOR = 'HYROX Performance';
+const CATALOG_CATEGORY = 'personal'; // DB enum bucket for fitness skills
+const PACK_CATEGORY = 'mixed'; // packs allow 'mixed'; mirrors the CrossFit pack
+// Catalog author — neutral repo attribution, mirroring the CrossFit pack
+// ("crossfit-claude-skills contributors"). HYROX branding is carried by the
+// methodology badge/art (matched on the `hyrox` tag, lib/methodology.ts), not by
+// authorship — HYROX did not author these skills.
+const NEUTRAL_AUTHOR = 'hyrox-claude-skills contributors';
 
 function sqlStr(value: string): string {
   return `'${value.replace(/'/g, "''")}'`;
@@ -123,7 +126,7 @@ function run(): void {
     lines.push(`  ${sqlStr(raw)},`);
     lines.push(`  ${sqlTextArray(tags)},`);
     lines.push(`  true,`);
-    lines.push(`  false,`);
+    lines.push(`  ${packVerified ? 'true' : 'false'},`);
     lines.push(`  now()`);
     lines.push(`) on conflict (slug) do update set`);
     lines.push(`  name = excluded.name,`);
@@ -135,6 +138,7 @@ function run(): void {
     lines.push(`  skill_content = excluded.skill_content,`);
     lines.push(`  tags = excluded.tags,`);
     lines.push(`  free = excluded.free,`);
+    lines.push(`  verified = excluded.verified,`);
     lines.push(`  updated_at = now();`);
     lines.push('');
   }
@@ -152,7 +156,7 @@ function run(): void {
   lines.push(`  ${sqlStr(packDescription)},`);
   lines.push(`  ${sqlStr(NEUTRAL_AUTHOR)},`);
   lines.push(`  ${sqlStr(REPO_URL)},`);
-  lines.push(`  ${sqlStr(CATALOG_CATEGORY)},`);
+  lines.push(`  ${sqlStr(PACK_CATEGORY)},`);
   lines.push(`  ${sqlTextArray(['hyrox', 'fitness-racing', 'endurance', 'strength-and-conditioning', 'race-prep'])},`);
   lines.push(`  ${sqlStr(REPO_URL)},`);
   lines.push(`  true,`);

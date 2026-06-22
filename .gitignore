@@ -1,5 +1,9 @@
 node_modules/
 dist/
+
+# Private brand/license identity — never publish (referenced generically by
+# assets/brand/brand-authorization.json).
+assets/brand/brand-authorization.private.json
 *.log
 .DS_Store
 .env

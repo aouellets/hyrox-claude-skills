@@ -23,7 +23,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-planning',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-adaptive-training-plan-manager',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Adaptive Training Plan Manager
 description: Use when a HYROX athlete is partway through an existing plan and reports completed work, missed sessions, fatigue, a niggle, or a schedule or performance change, and asks how to adjust the next block. Returns an updated next period that preserves the trajectory to the same race date and goal, with revised sessions, progression decisions, and what to drop. It never stacks missed work into the remaining days. It does not build the original plan (route to hyrox-training-plan-builder), write a progress narrative (route to hyrox-athlete-progress-report), or decide race readiness rather than revise training.
@@ -150,7 +150,7 @@ quietly picking one side.
 ',
   '{"hyrox","fitness-racing","planning","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -162,6 +162,7 @@ quietly picking one side.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -171,7 +172,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-assessment',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-athlete-assessment',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Athlete Assessment
 description: Use when a HYROX athlete or coach provides test results, training logs, race splits, or video and asks where they are losing time, what their limiters are, or what to prioritize across running, compromised running, the eight stations, grip, strength, transitions, and pacing. Expects whatever data exists (paces, station times, loads, RPE) and returns a ranked time-loss profile, not a training plan (route to hyrox-training-plan-builder) and not a finish-time prediction (route to hyrox-goal-time-and-race-predictor); it does not diagnose injuries.
@@ -302,7 +303,7 @@ surface the contradiction rather than silently choosing one number.
 ',
   '{"hyrox","fitness-racing","assessment","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -314,6 +315,7 @@ surface the contradiction rather than silently choosing one number.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -323,7 +325,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-assessment',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-athlete-progress-report',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Athlete Progress Report
 description: Use when a HYROX athlete or coach has training-block data — running, station times, simulations, strength, adherence, recovery, technique, transitions — and asks how progress is tracking, whether the block worked, or what to focus on next. Returns a measured progress report against prior baselines plus actionable next priorities. It does not rewrite the training plan itself (route to hyrox-adaptive-training-plan-manager) and does not predict a finish time or diagnose injuries.
@@ -442,7 +444,7 @@ it away.
 ',
   '{"hyrox","fitness-racing","assessment","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -454,6 +456,7 @@ it away.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -463,7 +466,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-assessment',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-benchmark-and-testing-builder',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Benchmark And Testing Builder
 description: Use when a HYROX athlete or coach asks how to test or baseline themselves, what benchmarks to run, or how to gather the data an assessment needs — covering run thresholds, station time trials, compromised-running tests, and simulation segments. Expects available equipment, training time, and division. Returns a minimum useful test battery with standardized setup, scoring, baseline, and retest dates; it does not interpret the results into limiters (pairs with hyrox-athlete-assessment) and does not build a training plan.
@@ -582,7 +585,7 @@ and propose the minimum useful subset instead.
 ',
   '{"hyrox","fitness-racing","assessment","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -594,6 +597,7 @@ and propose the minimum useful subset instead.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -603,7 +607,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-running',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-compromised-running-coach',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Compromised Running Coach
 description: Use when a HYROX athlete or coach asks to fix the run immediately after a station — running off heavy legs (especially post-sled), the slow first 100-200 m out of the roxzone, lost cadence, panicked breathing, or fade across the eight runs — and provides which stations cause the worst fade and recent compromised-run experience. Returns station-to-run interval work with progressive fatigue exposure. Not general aerobic development (route to hyrox-running-development-plan), not in-race pacing targets (route to hyrox-race-pacing-planner), not full simulations (route to hyrox-simulation-builder).
@@ -765,7 +769,7 @@ than silently choosing.
 ',
   '{"hyrox","fitness-racing","running","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -777,6 +781,7 @@ than silently choosing.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -786,7 +791,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-division-rules',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-division-and-rules-advisor',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Division And Rules Advisor
 description: Use when a HYROX athlete asks how a rule, weight, distance, rep count, or division standard works for Singles, Pro, Doubles, Pro Doubles, Mixed Doubles, Relay, Adaptive, or an age group, and supplies (or authorizes) the current rule text; it requires the event season or date, applies only the matching registry version, labels each answer official rule / interpretation / common practice / unverified, and warns when a rule may be stale. It does not build strategy (route to hyrox-doubles-strategy-builder or hyrox-relay-strategy-builder) and does not write training plans; it never asserts a weight from memory, never scrapes HYROX content, and never confirms an old-season number as current.
@@ -928,7 +933,7 @@ precision about a standard.
 ',
   '{"hyrox","fitness-racing","division-rules","risk:low","rules-dependent"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -940,6 +945,7 @@ precision about a standard.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -949,7 +955,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-partners',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-doubles-strategy-builder',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Doubles Strategy Builder
 description: Use when a HYROX Doubles, Pro Doubles, or Mixed Doubles pair wants a partner strategy from relative running, station strengths, grip, height, strength, work capacity, efficiency, fatigue profile, communication, and transition cost; it returns planned and backup work allocation, swap cues and commands, pace targets, no-rep mitigation, warm-up, and a simulation plan. What MAY be divided is governed by the current season''s rules, so it requires the event season or rule text and labels output conditional when absent. It is not the rule interpretation itself (route to hyrox-division-and-rules-advisor), not solo pacing (hyrox-race-pacing-planner), and not relay (hyrox-relay-strategy-builder).
@@ -1096,7 +1102,7 @@ each other, it surfaces the contradiction rather than quietly picking one.
 ',
   '{"hyrox","fitness-racing","partners","risk:low","rules-dependent"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -1108,6 +1114,7 @@ each other, it surfaces the contradiction rather than quietly picking one.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -1117,7 +1124,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-stations',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-equipment-substitution-engine',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Equipment Substitution Engine
 description: Use when a HYROX athlete or coach needs to train a station without the matching equipment and wants substitutions that preserve the closest feasible station-specific demand — joint action, force orientation, contraction type, energy-system load, grip demand, and compromised-running transfer — and provides the target station, available equipment, and the constraint. Returns each swap with what it PRESERVES and what it FAILS to reproduce, because gym kit rarely matches race resistance (especially sled friction). Not station conditioning programming (route to hyrox-station-progression-builder) and not sled-specific deep coaching (route to hyrox-sled-performance-specialist) rather than doing them here; never equates a gym substitute with race resistance.
@@ -1273,7 +1280,7 @@ quietly obliging.
 ',
   '{"hyrox","fitness-racing","stations","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -1285,6 +1292,7 @@ quietly obliging.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -1294,7 +1302,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-stations',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-erg-strategy-coach',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Erg Strategy Coach
 description: Use when a HYROX athlete or coach wants focused coaching for the SkiErg and/or Rower — technique, stroke rate, split targets, damper/drag setting, breathing rhythm, effort allocation, entry/exit and strap strategy, and pacing the erg under fatigue — and provides which erg, recent erg splits or capacity, and where in the race it sits. Returns erg execution tied to the WHOLE race, not a standalone erg PR, because an erg pace that wrecks the next run is the wrong pace. Not general non-erg station conditioning (route to hyrox-station-progression-builder), not whole-race in-race pacing (route to hyrox-race-pacing-planner), and not the sleds (route to hyrox-sled-performance-specialist) rather than coaching them here.
@@ -1452,7 +1460,7 @@ well afterward), surface the tension and resolve it toward the run, not the moni
 ',
   '{"hyrox","fitness-racing","stations","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -1464,6 +1472,7 @@ well afterward), surface the tension and resolve it toward the run, not the moni
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -1473,7 +1482,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-race-execution',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-fueling-and-hydration-planner',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Fueling And Hydration Planner
 description: Use when a HYROX athlete requests coaching-level fueling and hydration guidance — pre-race meals, race-morning timing, in-race carbohydrate intake, fluid, sodium, caffeine, recovery meal, or travel/heat adjustments — based on expected duration, gut tolerance, prior practice, conditions, and sweat-rate data when available. It gives practical ranges to rehearse in training, never trials a novel product on race day, and is not clinical nutrition therapy or eating-disorder management (route to the safety framework and a qualified professional) rather than weight-loss or restriction programming.
@@ -1632,7 +1641,7 @@ become an excuse to debut something new on race day — the safe default is alwa
 ',
   '{"hyrox","fitness-racing","race-execution","risk:moderate"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -1644,6 +1653,7 @@ become an excuse to debut something new on race day — the safe default is alwa
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -1653,7 +1663,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-assessment',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-goal-time-and-race-predictor',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Goal Time And Race Predictor
 description: Use when a HYROX athlete or coach provides paces, station times, and transition estimates and asks for a projected finish, a realistic goal-time range, or whether a target is feasible. Returns optimistic/expected/conservative finish, run/station/transition totals, a confidence band tied to data quality, and explicit assumptions and gaps — never a single guaranteed number and never false precision. It does not give in-race pacing instructions (route to hyrox-race-pacing-planner) and does not build a training plan.
@@ -1802,7 +1812,7 @@ rather than producing flattering numbers.
 ',
   '{"hyrox","fitness-racing","assessment","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -1814,6 +1824,7 @@ rather than producing flattering numbers.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -1823,7 +1834,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-orchestration',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-pack-router',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Pack Router
 description: Use when a HYROX athlete or coach sends a broad, vague, or multi-part request ("I have a race in 12 weeks, where do I start", "fix everything", "assess me and build a plan and tell me my splits") and the right owner is not one obvious skill; it identifies the intent(s), routes each to the narrowest applicable HYROX skill, and sequences them. It does not itself produce the plan, assessment, prediction, or analysis — it delegates — and it routes any medical or red-flag question to readiness/safety rather than coaching.
@@ -1987,7 +1998,7 @@ For a single clear intent, skip the router and go straight to that skill.
 ',
   '{"hyrox","fitness-racing","orchestration","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -1999,6 +2010,7 @@ For a single clear intent, skip the router and go straight to that skill.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -2008,7 +2020,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-post-race',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-post-race-performance-analyzer',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Post Race Performance Analyzer
 description: Use after a HYROX athlete finishes a race and provides their run splits, station times, transitions, penalties, planned targets, and notes on fueling, warm-up, or perceived effort, and asks where the race was won or lost; it compares planned vs actual segment by segment, ranks the largest addressable losses, classifies the split direction and pace decay, and separates observed facts from labeled root-cause hypotheses. It does not rewrite the training plan (route to hyrox-adaptive-training-plan-manager) or assess an athlete from scratch with no race (route to hyrox-athlete-assessment).
@@ -2167,7 +2179,7 @@ rather than quietly picking an interpretation.
 ',
   '{"hyrox","fitness-racing","post-race","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -2179,6 +2191,7 @@ rather than quietly picking an interpretation.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -2188,7 +2201,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-race-execution',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-race-day-warmup-builder',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Race Day Warmup Builder
 description: Use when a HYROX athlete or coach asks for a race-day warm-up — a time-stamped routine counted back from the start time given venue access, holding-area limits, athlete history, weather and travel, first-run pace, the opening SkiErg demands, and any injury considerations — and provides the start time and venue constraints. Returns a minute-by-minute timeline built to prime the athlete without causing pre-race fatigue. Not the race-week taper plan (route to hyrox-race-week-and-taper-planner), not in-race pacing (route to hyrox-race-pacing-planner).
@@ -2337,7 +2350,7 @@ surface the contradiction and the fatigue cost rather than complying.
 ',
   '{"hyrox","fitness-racing","race-execution","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -2349,6 +2362,7 @@ surface the contradiction and the fatigue cost rather than complying.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -2358,7 +2372,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-race-execution',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-race-pacing-planner',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Race Pacing Planner
 description: Use when a HYROX athlete or coach asks how to execute the race — per-km run targets, station target times, RPE and HR ceilings, roxzone transition targets, even-effort vs negative-split strategy, early-split contingencies, and in-race decision rules — and provides a goal time or recent splits plus a fresh run pace. Returns an executable race plan that budgets station fatigue cost on the following run. Not the finish-time prediction model (route to hyrox-goal-time-and-race-predictor), not the warm-up timeline (route to hyrox-race-day-warmup-builder), not detailed fueling (route to hyrox-fueling-and-hydration-planner).
@@ -2532,7 +2546,7 @@ silently picking one.
 ',
   '{"hyrox","fitness-racing","race-execution","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -2544,6 +2558,7 @@ silently picking one.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -2553,7 +2568,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-readiness',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-race-readiness-decision-tool',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Race Readiness Decision Tool
 description: Use when a HYROX athlete asks whether they should race given recent training, simulations, pain, fatigue, illness, sleep, travel, adherence, form, and how much the race matters, and wants a clear go/no-go style verdict; it returns exactly one of six verdicts (race as planned, race with revised expectations, reduce final training, modify participation, seek medical guidance, or withhold pending missing information). This is coaching judgment, not medical clearance, and it is not the taper plan itself (route to hyrox-race-week-and-taper-planner); red-flag symptoms route to medical guidance, never to "race as planned".
@@ -2706,7 +2721,7 @@ benign.
 ',
   '{"hyrox","fitness-racing","readiness","risk:moderate"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -2718,6 +2733,7 @@ benign.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -2727,7 +2743,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-race-execution',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-race-specific-workout-generator',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Race Specific Workout Generator
 description: Use when a HYROX athlete or coach requests a single session targeting one defined adaptation — aerobic capacity, threshold, race pace, strength, station strength, muscular endurance, grip, compromised running, transitions, technical efficiency, or race execution — and wants a concrete structure with intensity, rest, loads, and progression criteria. Every session must name its target adaptation and why; it will not produce random run-and-station circuits, and it is not a full periodized plan (route to hyrox-training-plan-builder) or a race simulation (route to hyrox-simulation-builder) rather than an undefined "hard workout".
@@ -2860,7 +2876,7 @@ time, and never manufacture false precision in the prescription.
 ',
   '{"hyrox","fitness-racing","race-execution","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -2872,6 +2888,7 @@ time, and never manufacture false precision in the prescription.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -2881,7 +2898,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-planning',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-race-week-and-taper-planner',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Race Week And Taper Planner
 description: Use when a HYROX athlete is in the final 7-14 days before a race and asks how to taper, what to do this week, the last hard session, the last sled, or how to handle travel, sleep, and logistics. Returns a day-by-day taper that reduces volume while maintaining intensity, places the last hard and last sled sessions, and covers mobility, sleep, travel, and activation. Its rule is no new methods in race week. It does not build the day-of warm-up timeline (route to hyrox-race-day-warmup-builder), set in-race pacing (route to hyrox-race-pacing-planner), or write a detailed fueling plan rather than coordinate one (route to hyrox-fueling-and-hydration-planner).
@@ -3012,7 +3029,7 @@ than quietly working it in.
 ',
   '{"hyrox","fitness-racing","planning","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -3024,6 +3041,7 @@ than quietly working it in.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -3033,7 +3051,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-partners',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-relay-strategy-builder',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Relay Strategy Builder
 description: Use when a HYROX Relay team wants to assign race segments from member specialties, running, station ability, sequence effects, back-to-back fatigue, warm-up logistics, recovery windows, handoff rules, and team risk; it evaluates multiple candidate assignments with explicit tradeoffs and returns a recommended assignment plus warm-up and handoff logistics. How the race is segmented and how handoffs work are season-dependent, so it requires the event season or rule text and labels output conditional when absent. It is not doubles (route to hyrox-doubles-strategy-builder) and not rule interpretation (hyrox-division-and-rules-advisor); it never asserts segmentation from memory and never scrapes HYROX content.
@@ -3177,7 +3195,7 @@ one.
 ',
   '{"hyrox","fitness-racing","partners","risk:low","rules-dependent"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -3189,6 +3207,7 @@ one.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -3198,7 +3217,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-race-execution',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-roxzone-and-transition-strategist',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Roxzone And Transition Strategist
 description: Use when a HYROX athlete or coach asks to sharpen the roxzone — station approach and exit, route awareness, where to ease and resume pace, equipment entry and setup, chalk, planned hydration, walk-vs-run choices, rower strap handling, partner communication, and transition target ranges — and provides which stations and what venue/measured transition data they have. Returns a transition-by-transition plan with target ranges treated as assumptions to measure. Not in-race run/station pacing (route to hyrox-race-pacing-planner), not partner work allocation (route to hyrox-doubles-strategy-builder or hyrox-relay-strategy-builder).
@@ -3365,7 +3384,7 @@ chalk and a long roxzone path), surface it rather than silently accepting it.
 ',
   '{"hyrox","fitness-racing","race-execution","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -3377,6 +3396,7 @@ chalk and a long roxzone path), surface it rather than silently accepting it.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -3386,7 +3406,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-running',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-running-development-plan',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Running Development Plan
 description: Use when a HYROX athlete or coach asks to build a standalone running block — aerobic base, threshold, race-pace, speed reserve, economy, durability, repeat-1km, easy volume, or interval progression — and provides current running fitness, weekly running availability, and a race date or goal. Returns a periodized running-capacity plan integrated with stations and strength with tracked impact exposure. Not the post-station fade fix (route to hyrox-compromised-running-coach) and not a full HYROX plan (route to hyrox-training-plan-builder).
@@ -3539,7 +3559,7 @@ rather than silently picking one number.
 ',
   '{"hyrox","fitness-racing","running","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -3551,6 +3571,7 @@ rather than silently picking one number.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -3560,7 +3581,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-race-execution',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-simulation-builder',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Simulation Builder
 description: Use when a HYROX athlete or coach requests a race-rehearsal session — a station-only block, run-station bricks, a half or segmented simulation, a full simulation, or a doubles/relay sim — and wants the objective, timing, intensity, equipment substitutions, data to collect, recovery cost, and advancement criteria. It builds the right-sized exposure and states the reasons NOT to run a full simulation; it does not write the periodized plan (route to hyrox-training-plan-builder), single-adaptation sessions (route to hyrox-race-specific-workout-generator), or in-race pacing (route to hyrox-race-pacing-planner) rather than full simulations every week.
@@ -3705,7 +3726,7 @@ wrong answer when data is missing.
 ',
   '{"hyrox","fitness-racing","race-execution","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -3717,6 +3738,7 @@ wrong answer when data is missing.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -3726,7 +3748,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-stations',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-sled-performance-specialist',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Sled Performance Specialist
 description: Use when a HYROX athlete or coach wants focused coaching for the sled push and sled pull — strength base, starting mechanics, body angle and posture, hand position, footwork, acceleration versus sustained drive, turns, pulling posture, rope management, hand-over-hand rhythm, grip endurance, and repeatability across the race — and provides current sled performance, training surface, and equipment. Returns sled-specific technique and conditioning that accounts for turf, flooring, sled model, friction, calibration, and training distance. Not general conditioning for non-sled stations (route to hyrox-station-progression-builder) and not equipment substitution when no sled is available (route to hyrox-equipment-substitution-engine) rather than improvising a swap here; never equates gym sled load with race resistance.
@@ -3899,7 +3921,7 @@ reference, the surface). If inputs conflict, surface it.
 ',
   '{"hyrox","fitness-racing","stations","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -3911,6 +3933,7 @@ reference, the surface). If inputs conflict, surface it.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -3920,7 +3943,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-stations',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-station-progression-builder',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Station Progression Builder
 description: Use when a HYROX athlete or coach requests a development program to build capacity on one standard station (ski-erg, sled push, sled pull, burpee broad jumps, row, farmers carry, sandbag lunges, or wall balls) — prerequisites, technique, strength and efficiency targets, progressions, regressions, scaling, accessory work, conditioning, proficiency tests, and race benchmarks with retest dates — and provides the station, the athlete''s current capacity, equipment, and weeks to race. Returns periodized station conditioning. Not fault diagnosis from a description (route to hyrox-technique-and-fault-analyzer), not equipment swaps (route to hyrox-equipment-substitution-engine), and not sled-specific deep coaching (route to hyrox-sled-performance-specialist) rather than treating the sleds here.
@@ -4094,7 +4117,7 @@ rather than silently choosing.
 ',
   '{"hyrox","fitness-racing","stations","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -4106,6 +4129,7 @@ rather than silently choosing.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -4115,7 +4139,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-stations',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-technique-and-fault-analyzer',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Technique And Fault Analyzer
 description: Use when a HYROX athlete or coach describes what is happening on a station (ski-erg, sled push, sled pull, burpee broad jumps, row, farmers carry, sandbag lunges, wall balls) and asks what is going wrong — analyzing the observation to rank likely faults by time cost, energy cost, no-rep risk, safety, and correction ease, separating observed facts from hypotheses, and stating what cannot be determined from the description. Returns a movement-assessment with a prioritized faults table. Not conditioning or programming (route to hyrox-station-progression-builder), and it will not diagnose a definite fault from insufficient evidence rather than over-diagnosing — it asks the few discriminating questions instead.
@@ -4268,7 +4292,7 @@ helpful. If the description is internally contradictory, it surfaces that.
 ',
   '{"hyrox","fitness-racing","stations","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -4280,6 +4304,7 @@ helpful. If the description is internally contradictory, it surfaces that.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -4289,7 +4314,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-planning',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-training-plan-builder',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Training Plan Builder
 description: Use when a HYROX athlete or coach provides a race date, division, experience, goal time, weekly availability, and equipment and asks to build a periodized training plan from scratch. Returns a phased plan (general prep, capacity, race-specific, simulations, peak, taper, recovery) with weekly goals, session structure, paces, and progression criteria sized to the time available. It does not revise a plan already underway (route to hyrox-adaptive-training-plan-manager), does not produce final-week taper detail (route to hyrox-race-week-and-taper-planner), and does not assess limiters or predict a finish time rather than program for one.
@@ -4429,7 +4454,7 @@ realistic provisional plan plus the honest caveat instead of a flattering one.
 ',
   '{"hyrox","fitness-racing","planning","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -4441,6 +4466,7 @@ realistic provisional plan plus the honest caveat instead of a flattering one.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 insert into skills (slug, name, description, category, subcategory, source_url, author, skill_content, tags, free, verified, updated_at) values (
@@ -4450,7 +4476,7 @@ insert into skills (slug, name, description, category, subcategory, source_url, 
   'personal',
   'hyrox-stations',
   'https://github.com/aouellets/hyrox-claude-skills/tree/main/skills/hyrox-wall-ball-completion-planner',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   '---
 name: Wall Ball Completion Planner
 description: Use when a HYROX athlete or coach wants a realistic plan to complete the wall ball station — target set structure, planned and backup breaks, breathing rhythm, squat efficiency, throw timing, catch position, no-rep mitigation, fatigue-specific practice, and prep volume — and provides the season/division rep count (or accepts a labeled assumption) and recent wall ball capacity. Returns a broken-set completion plan built for cooked legs at the END of the race, not an unbroken set the athlete can only hit fresh. Not general squat strength programming (route to hyrox-station-progression-builder) and not whole-race in-race pacing (route to hyrox-race-pacing-planner) rather than absorbing them here.
@@ -4610,7 +4636,7 @@ plan.
 ',
   '{"hyrox","fitness-racing","stations","risk:low"}',
   true,
-  false,
+  true,
   now()
 ) on conflict (slug) do update set
   name = excluded.name,
@@ -4622,6 +4648,7 @@ plan.
   skill_content = excluded.skill_content,
   tags = excluded.tags,
   free = excluded.free,
+  verified = excluded.verified,
   updated_at = now();
 
 -- ---- pack -----------------------------------------------------------------
@@ -4632,9 +4659,9 @@ insert into packs (slug, name, tagline, description, author, author_url, categor
   'A complete, standalone coaching system for the fixed 8-run / 8-station fitness race format: athlete assessment, deterministic goal-time modeling, periodized training plans, running and compromised-running development, station technique and conditioning, race pacing and roxzone transitions, simulations, race-week taper, division and partner strategy, and post-race analysis. Domain-general coaching concepts are specialized for this race format, not factored out as generic fitness advice.
 
 Produced by a HYROX-affiliated gym and trainer; the HYROX mark is used under the operator''s HYROX affiliate license (verifiable on request). "HYROX" is a trademark of HYROX World GmbH. This pack is independently produced and is not separately reviewed, certified, or endorsed by HYROX World GmbH — an affiliate license to use the mark is not an endorsement of this software. See DISCLAIMER.md and assets/brand/brand-authorization.json.',
-  'HYROX Performance',
+  'hyrox-claude-skills contributors',
   'https://github.com/aouellets/hyrox-claude-skills',
-  'personal',
+  'mixed',
   '{"hyrox","fitness-racing","endurance","strength-and-conditioning","race-prep"}',
   'https://github.com/aouellets/hyrox-claude-skills',
   true,
