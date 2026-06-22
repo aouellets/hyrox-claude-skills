@@ -30,8 +30,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, loadAllSkills, GREEN } from './_lib.ts';
 
-// TODO(release): replace OWNER with the real GitHub org once the repo is published.
-const REPO_URL = 'https://github.com/OWNER/hyrox-claude-skills';
+const REPO_URL = 'https://github.com/aouellets/hyrox-claude-skills';
 const CATALOG_CATEGORY = 'personal'; // DB enum bucket for fitness content
 const NEUTRAL_AUTHOR = 'hyrox-claude-skills';
 
