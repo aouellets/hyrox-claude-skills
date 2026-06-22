@@ -1,0 +1,31 @@
+{
+  "name": "hyrox-claude-skills",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Standalone open-source Claude Agent Skills repository for HYROX performance coaching — source of truth for the HYROX content ingested by the Skill Me catalog and served over MCP. Independent and not affiliated with HYROX World GmbH.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate:frontmatter": "tsx scripts/validate-frontmatter.ts",
+    "validate:skills": "tsx scripts/validate-skills.ts",
+    "validate:links": "tsx scripts/validate-internal-links.ts",
+    "validate:triggers": "tsx scripts/lint-trigger-descriptions.ts",
+    "validate:sources": "tsx scripts/validate-source-versions.ts",
+    "validate": "npm run validate:frontmatter && npm run validate:skills && npm run validate:links && npm run validate:triggers && npm run validate:sources",
+    "build:inventory": "tsx scripts/build-inventory.ts",
+    "build:seed": "tsx scripts/build-seed.ts",
+    "build": "npm run build:inventory && npm run build:seed",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "evals": "tsx scripts/run-evals.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run validate && npm run test && npm run build && npm run evals"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
+  }
+}

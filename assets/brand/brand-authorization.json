@@ -1,0 +1,9 @@
+{
+  "brand": "HYROX",
+  "authorized": false,
+  "authorization_type": null,
+  "authorized_by": null,
+  "authorization_date": null,
+  "permitted_uses": [],
+  "notes": "No brand authorization has been granted or documented. This repository is independent and is not official, endorsed, sponsored, approved, or certified by HYROX World GmbH or its affiliates. Because authorized is false, the pack ships under the neutral display name \"Fitness Racing Performance Pack\". Nominative references to HYROX racing (describing the race format) are permitted; claims of affiliation, partnership, certification, or endorsement are not. Validation refuses to label the pack official or to mark it verified unless this record is set authorized:true with complete authorization_type, authorized_by, and authorization_date fields. Do not add HYROX logo image files; if any are added, validation must continue to refuse official labeling without complete authorization metadata."
+}

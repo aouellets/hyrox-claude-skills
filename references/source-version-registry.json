@@ -1,0 +1,18 @@
+{
+  "registry_version": "1.0.0",
+  "description": "Versioned registry of rules sources for the rules-dependent skills (hyrox-division-and-rules-advisor, hyrox-doubles-strategy-builder, hyrox-relay-strategy-builder). Division weights, distances, standards, and seasonal rules are NEVER hardcoded into skill bodies. A skill may only apply a rule that is present here with a season/effective_date matching the athlete's event, and must warn when the matching version is stale or absent. This file ships EMPTY of proprietary rulebook content: no HYROX manuals are scraped or embedded. Entries are added only from user-supplied or properly licensed/authorized sources. See references/race-structure.md and docs/branding-and-trademarks.md.",
+  "field_definitions": {
+    "source_id": "Stable unique identifier for this rules source/version, e.g. 'user-2026-season-singles'.",
+    "organization": "The body that issued the rules (e.g. the event organizer, or 'user-supplied').",
+    "document_title": "Title of the rulebook / standards document.",
+    "season": "Season or edition label the rules apply to (e.g. '2026', '2025/26').",
+    "effective_date": "YYYY-MM-DD the rules took effect.",
+    "retrieved_date": "YYYY-MM-DD the content was supplied to / recorded in this repo.",
+    "authorization_status": "One of: user_supplied | public_reference | licensed | unverified | none.",
+    "official_source_reference": "Where the user/maintainer can verify the canonical rule (URL or citation), NOT scraped content.",
+    "supersedes": "source_id of the prior version this replaces, or null.",
+    "notes": "Free-text caveats, scope, and known gaps."
+  },
+  "authorization_status_values": ["user_supplied", "public_reference", "licensed", "unverified", "none"],
+  "sources": []
+}
